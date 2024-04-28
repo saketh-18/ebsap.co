@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+}
+
+.nav-elements{
+    transition: color 0.5s ease-in-out;
+}
+
+.nav-elements:hover {
+    cursor:pointer;
+    color: skyblue;
+}
+
+.banner1 {
+    background-image: url(images/banner1.jpg);
+    /* background-attachment: fixed; */ 
+    background-size: cover;
+    height: 90vh;
+}
+
+.log-in-box {
+    background-color: rgba(0, 0, 0, 0.486);
+}
+
+.login-container {
+    background-image: url(images/banner2.jpg);
+    background-size: cover;
+}
+
+.forgot-container {
+    background-image: url(images/banner4.jpg);
+    background-size: cover;
+}
