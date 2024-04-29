@@ -6,6 +6,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [pCheck , setpCheck] = useState('');
 
   async function handleLogin() {
     try {
@@ -18,9 +19,10 @@ export default function Login() {
       });
 
       if (response.ok) {
-        navigate("/account");
+        navigate("/payment");
       } else {
         console.log("Login failed");
+        setpCheck("wrong Password");
         // Handle login failure
       }
     } catch (error) {
@@ -48,6 +50,7 @@ export default function Login() {
         className='mb-4 rounded-md focus:outline-none w-1/2 self-center p-2'
       />
       <button className='p-2 bg-sky-500 w-1/2 rounded-md self-center button' onClick={handleLogin}>Login</button>
+      <p className='text-red-500 text-xl self-center font-semibold mt-3'>{pCheck}</p>
       <div className='flex w-1/2 self-center justify-between mt-3'>
         <Link to="/" className='underline'>Register Instead?</Link>
         <Link to="/forgot" className='underline' >Forgot Password?</Link>
