@@ -20,7 +20,7 @@ body::-webkit-scrollbar {
 }
 
 .banner1 {
-    background-image: url(images/banner1.jpg);
+    background-image: url(../images/banner1.jpg);
     /* background-attachment: fixed; */ 
     background-size: cover;
     height: 90vh;
@@ -31,11 +31,11 @@ body::-webkit-scrollbar {
 }
 
 .login-container {
-    background-image: url(images/banner2.jpg);
+    background-image: url(../images/banner2.jpg);
     background-size: cover;
 }
 
 .forgot-container {
-    background-image: url(images/banner4.jpg);
+    background-image: url(../images/banner4.jpg);
     background-size: cover;
 }
