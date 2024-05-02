@@ -61,38 +61,34 @@ mongoose.connect("mongodb+srv://sakethayinavolu:9tK3wy8L4XPrdP7z@cluster0.or4zlg
   });
 
   app.post("/login", async (req, res) => {
-    const {username , password} = req.body;
-    console.log(username , password);
-      
-      const currentUser = await ebsap.findOne({username : username});
-      console.log("currentUser" , currentUser);
-      //comparing the passwords:
-      try {
-          if(currentUser) {
-                  if(currentUser.password === password) {
-                      console.log("succesfully logged in");
-                      //generating a json web token
-                      const user = {username : username , id : currentUser._id}
-                      jwt.sign(user , "SECRET" , (err , token) => {
-                          if (err) throw err;
-                          res.cookie('token' , token ).json({msg : "succccccesfully logged in"});
-                      })
-                  }
-                  else {
-                      console.log("wrong password");
-                      res.sendStatus(400);
-                  } 
-          }
-          else {
-              console.log("user does'nt exist try regitering");
-          }
+    const { username, password } = req.body;
+  
+    try {
+      const currentUser = await ebsap.findOne({ username: username });
+  
+      if (currentUser) {
+        if (currentUser.password === password) {
+          console.log("successfully logged in");
+          // generating a json web token
+          const user = { username: currentUser.username, id: currentUser._id };
+          jwt.sign(user, "SECRET", (err, token) => {
+            if (err) throw err;
+            res.cookie("token", token, { httpOnly: true }).json({ message: "successfully logged in" });
+          });
+        } else {
+          console.log("wrong password");
+          res.status(400).json({ message: "Invalid credentials" });
+        }
+      } else {
+        console.log("user doesn't exist try registering");
+        res.status(404).json({ message: "User not found" });
       }
-      catch(er) {
-          console.log(er);
-      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
   });
   
-
 
   // Configure nodemailer
 const transporter = nodemailer.createTransport({
@@ -154,30 +150,29 @@ app.get("/profile", (req, res) => {
   const token = req.cookies.token;
 
   if (!token) {
-      return res.status(401).json({ message: "Unauthorized" });
+    return res.status(401).json({ message: "Unauthorized" });
   }
 
   jwt.verify(token, "SECRET", async (err, decoded) => {
-      if (err) {
-          return res.status(401).json({ message: "Unauthorized" });
+    if (err) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const userId = decoded.id; // Retrieve user ID from token payload
+
+    try {
+      const user = await ebsap.findById(userId); // Find user by ID
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
       }
 
-      const userId = decoded.id;
-
-      try {
-          const user = await ebsap.findById(userId);
-          if (!user) {
-              return res.status(404).json({ message: "User not found" });
-          }
-
-          res.status(200).json({ username: user.username });
-      } catch (error) {
-          console.error("Error fetching user:", error);
-          res.status(500).json({ message: "Internal Server Error" });
-      }
+      res.status(200).json({ username: user.username });
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
   });
 });
-
 
 
 

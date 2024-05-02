@@ -19,7 +19,7 @@ export default function Login() {
       });
 
       if (response.ok) {
-        navigate("/payment");
+        navigate("/bill");
       } else {
         console.log("Login failed");
         setpCheck("wrong Password");

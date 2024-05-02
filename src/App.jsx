@@ -6,6 +6,7 @@ import Account from './Components/Routes/Account';
 import Login from './Components/Routes/Login';
 import Forgot from './Components/Routes/Forgot';
 import Payment from './Components/Routes/Payment';
+import Bill from './Components/Routes/Bill';
 
 export default function App(){
   return (
@@ -17,6 +18,7 @@ export default function App(){
       <Route path='/login' element={<Login />}/>
       <Route path='/forgot' element={<Forgot />} />
       <Route path='/payment' element={<Payment />} />
+      <Route path='/bill' element={<Bill />} />
       </Routes>
     </BrowserRouter>
   </> 
