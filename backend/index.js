@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import nodemailer from 'nodemailer';
 import payment from './Models/payment.js'
-// import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 // import verifyToken from "./verifyToken.js";
 
 const app = express();
@@ -149,6 +149,35 @@ app.post("/save_payment", async (req, res) => {
     res.sendStatus(500);
   }
 });
+
+app.get("/profile", (req, res) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+      return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  jwt.verify(token, "SECRET", async (err, decoded) => {
+      if (err) {
+          return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const userId = decoded.id;
+
+      try {
+          const user = await ebsap.findById(userId);
+          if (!user) {
+              return res.status(404).json({ message: "User not found" });
+          }
+
+          res.status(200).json({ username: user.username });
+      } catch (error) {
+          console.error("Error fetching user:", error);
+          res.status(500).json({ message: "Internal Server Error" });
+      }
+  });
+});
+
 
 
 
