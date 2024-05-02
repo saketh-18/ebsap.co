@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import "../../bill.css";
+
+import "../../bill.css"; // Import your custom CSS file
+import "../../App.css"; // Import Tailwind CSS file
 
 export default function Bill() {
     const [username, setUsername] = useState('');
