@@ -19,7 +19,7 @@ const port = 4000;
 const allowedOrigins = [
     "http://localhost:5174",
     "http://localhost:5173",
-    "https://style-curve-4wnucb9sp-sakeths-projects-dbd1767a.vercel.app",
+    "https://ebsap-co.vercel.app",
     "https://style-curve-git-master-sakeths-projects-dbd1767a.vercel.app",
     "https://style-curve.vercel.app"
   ];
