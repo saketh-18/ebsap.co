@@ -37,4 +37,124 @@ body::-webkit-scrollbar {
 .forgot-container {
     background-image: url(../images/banner4.jpg);
     background-size: cover;
+} 
+
+.user-interface {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-container {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-title {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  .nav-container {
+    margin-bottom: 20px;
+  }
+  
+  .nav-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-list li {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .nav-list li.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+
+/* calculate */
+.electricity-calculator-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.electricity-calculator-title {
+  text-align: center;
+  color: #333;
+}
+
+.electricity-calculator-input {
+  margin-bottom: 20px;
+}
+
+.electricity-calculator-input label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.electricity-calculator-input input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.electricity-calculate-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.electricity-calculate-btn:hover {
+  background-color: #0056b3;
+}
+
+.electricity-calculator-result {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.electricity-calculator-result h3 {
+  margin-bottom: 10px;
+}
+
+.electricity-calculator-result p {
+  font-size: 20px;
+  font-weight: bold;
 }

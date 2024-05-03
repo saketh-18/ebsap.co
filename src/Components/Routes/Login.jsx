@@ -52,7 +52,7 @@ export default function Login() {
       <button className='p-2 bg-sky-500 w-1/2 rounded-md self-center button' onClick={handleLogin}>Login</button>
       <p className='text-red-500 text-xl self-center font-semibold mt-3'>{pCheck}</p>
       <div className='flex w-1/2 self-center justify-between mt-3'>
-        <Link to="/" className='underline'>Register Instead?</Link>
+        <Link to="/register" className='underline'>Register Instead?</Link>
         <Link to="/forgot" className='underline' >Forgot Password?</Link>
       </div>
     </div>

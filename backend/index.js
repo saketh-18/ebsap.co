@@ -150,29 +150,30 @@ app.get("/profile", (req, res) => {
   const token = req.cookies.token;
 
   if (!token) {
-    return res.status(401).json({ message: "Unauthorized" });
+      return res.status(401).json({ message: "Unauthorized" });
   }
 
   jwt.verify(token, "SECRET", async (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-
-    const userId = decoded.id; // Retrieve user ID from token payload
-
-    try {
-      const user = await ebsap.findById(userId); // Find user by ID
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
+      if (err) {
+          return res.status(401).json({ message: "Unauthorized" });
       }
 
-      res.status(200).json({ username: user.username });
-    } catch (error) {
-      console.error("Error fetching user:", error);
-      res.status(500).json({ message: "Internal Server Error" });
-    }
+      const userId = decoded.id;
+
+      try {
+          const user = await ebsap.findById(userId);
+          if (!user) {
+              return res.status(404).json({ message: "User not found" });
+          }
+
+          res.status(200).json({ username: user.username });
+      } catch (error) {
+          console.error("Error fetching user:", error);
+          res.status(500).json({ message: "Internal Server Error" });
+      }
   });
 });
+
 
 
 
