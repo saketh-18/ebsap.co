@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const Welcome = () => {
@@ -25,7 +26,7 @@ const renderDashboard = () => {
     <div className="section-container">
       <h2 className="section-title">Welcome, {userData.firstName}!</h2>
       <p>Your account balance: ₹{userData.accountBalance}</p>
-      <button className="btn" onClick={() => changeSection('payment')}>Make Payment</button>
+      <Link to={"/payment"} className="btn" onClick={() => changeSection('payment')}>Make Payment</Link>
       <button className="btn" onClick={() => changeSection('profile')} style={{ marginLeft: '10px' }}>Edit Profile</button>
     </div>
   );
