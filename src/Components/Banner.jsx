@@ -22,7 +22,7 @@ export default function Banner() {
     });
 
     if (res.ok) {
-      navigate("/welcome");
+      navigate("/login");
     } else {
       // Handle errors if needed
       console.error("Registration failed:", res.statusText);

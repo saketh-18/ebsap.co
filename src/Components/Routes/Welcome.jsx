@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 const Welcome = () => {
   // State variables for managing user data and sections
   const [userData, setUserData] = useState({
-    firstName: 'John',
-    lastName: 'Doe',
+    firstName: 'Adithya',
+    lastName: '',
     email: 'john@example.com',
     address: '123 Main St, City',
     accountBalance: 500,
@@ -24,7 +24,7 @@ const renderDashboard = () => {
   return (
     <div className="section-container">
       <h2 className="section-title">Welcome, {userData.firstName}!</h2>
-      <p>Your account balance: ${userData.accountBalance}</p>
+      <p>Your account balance: ₹{userData.accountBalance}</p>
       <button className="btn" onClick={() => changeSection('payment')}>Make Payment</button>
       <button className="btn" onClick={() => changeSection('profile')} style={{ marginLeft: '10px' }}>Edit Profile</button>
     </div>

@@ -1,36 +1,40 @@
-import React, { useEffect, useState } from 'react'
-import Topbar from '../Topbar'
+import React, { useEffect, useState } from 'react';
+import Topbar from '../Topbar';
 
 export default function Account() {
-  const [username , setUsername] = useState('');
+  const [username, setUsername] = useState('');
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    const res = () => {
-  fetch("http://localhost:4000/profile", {
+    fetch("http://localhost:4000/profile", {
       method: "GET",
       credentials: "include", // Include cookies in the request
-  })
-  .then(response => {
+    })
+    .then(response => {
       if (!response.ok) {
-          throw new Error("Network response was not ok");
+        throw new Error("Network response was not ok");
       }
       return response.json();
-  })
-  .then(data => {
+    })
+    .then(data => {
       console.log("User details:", data);
       setUsername(data.username);
       // Update UI with user details
-  })
-  .catch(error => {
+    })
+    .catch(error => {
       console.error("Error fetching user details:", error);
-  }); 
-} 
- res()
-} , []);
+      setError(error.message); // Set error state
+    }); 
+  }, []);
 
   return (
     <>
-    <Topbar />
-    <div className='text-sky-500 text-2xl text-center' >{username} hello!!</div>
+      <Topbar />
+      {error ? (
+        <div className='text-red-500 text-2xl text-center'>{error}</div>
+      ) : (
+        <div className='text-sky-500 text-2xl text-center'>{username} hello!!</div>
+      )}
     </>
-  )
+  );
 }

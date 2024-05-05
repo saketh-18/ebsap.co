@@ -76,15 +76,23 @@ function PaymentCard({ image, number, expiryDate, name }) {
 }
 
 function PaymentMethodButton({ method, icon, icons, product, price }) {
+    const [collapsed, setCollapsed] = useState(false);
+
+    const toggleCollapse = () => {
+        setCollapsed(!collapsed);
+    };
+
     return (
         <div className="card-body border p-0">
             <p>
-                <a className="btn btn-primary w-100 h-100 d-flex align-items-center justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+                <button className="btn btn-primary w-100 h-100 d-flex align-items-center justify-content-between" onClick={toggleCollapse} aria-expanded={collapsed ? 'true' : 'false'}>
                     <span className="fw-bold">{method}</span>
                     <span className={icons ? '' : icon}>{icons && icons.map((i, index) => <span key={index} className={i}></span>)}</span>
-                </a>
+                </button>
             </p>
-            <div className="collapse p-3 pt-0" id="collapseExample">
+            <div className={`collapse ${collapsed ? 'show' : ''}`} id="collapseExample">
+                {/* Collapsible content */}
+                {/* Your form elements go here */}
                 <div className="row">
                     <div className="col-lg-5 mb-lg-0 mb-3">
                         <p className="h4 mb-0">Summary</p>
@@ -130,3 +138,4 @@ function PaymentMethodButton({ method, icon, icons, product, price }) {
         </div>
     );
 }
+
